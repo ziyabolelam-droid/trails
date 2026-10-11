@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse mountain scenery and places to explore in Lesotho.">
+  <title>Destinations | MalotiTrails Lesotho</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><style>
+/* MalotiTrails - shared styles for all five pages */
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --ink: #172d35;
+  --muted: #65777b;
+  --cream: #f7f5ef;
+  --paper: #fffefa;
+  --blue: #174b59;
+  --blue-dark: #102f39;
+  --sun: #e7b45a;
+  --line: #e3e4dd;
+  --shadow: 0 18px 50px rgba(18, 43, 50, .10);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Work Sans', Arial, sans-serif; line-height: 1.65; }
+h1, h2, h3, .navbar-brand { font-family: 'Bitter', Georgia, serif; letter-spacing: -.035em; }
+h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.15; }
+a { color: var(--blue); }
+img { max-width: 100%; }
+.skip-link { position: absolute; left: -9999px; top: 0; background: white; color: black; padding: 1rem; z-index: 10000; }
+.skip-link:focus { left: 1rem; }
+.site-nav { background: var(--blue-dark); padding: 1rem 0; }
+.navbar-brand { font-size: 1.28rem; font-weight: 700; letter-spacing: -.05em; color: #fff !important; }
+.brand-mark { display: inline-grid; place-items: center; width: 31px; height: 31px; margin-right: .35rem; background: var(--sun); color: var(--blue-dark); border-radius: 50% 50% 50% 8px; font-family: 'Work Sans', sans-serif; font-size: .95rem; }
+.brand-dot { color: var(--sun); }
+.navbar .nav-link { color: rgba(255,255,255,.78); margin: 0 .18rem; font-size: .92rem; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: var(--sun); }
+.theme-toggle { color: white; border: 1px solid rgba(255,255,255,.45); border-radius: 50px; padding: .42rem .8rem; }
+.theme-toggle:hover { color: var(--blue-dark); background: var(--sun); border-color: var(--sun); }
+.hero { position: relative; display: flex; align-items: center; min-height: 660px; color: white; background-size: cover; background-position: center; overflow: hidden; }
+.hero-home { background-image: url("mokhotlong.jpg"); }
+.hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,35,43,.88) 0%, rgba(10,35,43,.55) 50%, rgba(10,35,43,.06) 100%); }
+.hero-content { position: relative; z-index: 1; padding-top: 2rem; padding-bottom: 3rem; }
+.eyebrow { color: #a56f23; font-size: .75rem; font-weight: 700; letter-spacing: .19em; margin-bottom: 1rem; }
+.hero .eyebrow, .page-hero .eyebrow { color: var(--sun); }
+.hero h1, .page-hero h1 { font-size: clamp(3rem, 7vw, 6.4rem); font-weight: 600; line-height: 1.04; max-width: 850px; margin-bottom: 1.4rem; }
+.hero h1 em, .page-hero h1 em, blockquote em { color: var(--sun); font-weight: 500; }
+.hero-text { max-width: 530px; font-size: 1.1rem; color: rgba(255,255,255,.86); margin-bottom: 2rem; }
+.btn-sun { background: var(--sun); color: var(--blue-dark); border: 1px solid var(--sun); border-radius: 3px; padding: .85rem 1.25rem; font-weight: 700; transition: transform .2s ease, background .2s ease; }
+.btn-sun:hover { background: #f0c878; color: var(--blue-dark); transform: translateY(-2px); }
+.btn-outline-light, .btn-outline-dark { border-radius: 3px; padding: .85rem 1.2rem; }
+.hero-note { display: flex; align-items: center; gap: .7rem; margin-top: 3rem; font-size: .82rem; color: rgba(255,255,255,.76); }
+.note-line { width: 38px; height: 1px; background: var(--sun); }
+.hero-stamp { position: absolute; right: 7%; bottom: 11%; z-index: 1; width: 130px; height: 130px; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transform: rotate(8deg); }
+.hero-stamp span { font-family: 'Bitter', serif; font-size: 1.6rem; color: var(--sun); }
+.hero-stamp small { font-size: .7rem; line-height: 1.25; text-transform: uppercase; letter-spacing: .1em; }
+.quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--cream); padding: 1.65rem 2rem; margin-top: -1px; }
+.quick-facts div { display: flex; flex-direction: column; padding: .2rem 1.5rem; border-right: 1px solid #dcded6; }
+.quick-facts div:last-child { border: 0; }
+.quick-facts strong { font-family: 'Bitter', serif; font-size: 1.25rem; }
+.quick-facts span { color: var(--muted); font-size: .82rem; }
+.section-space { padding-top: 6rem; padding-bottom: 6rem; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+.section-heading h2 { margin-bottom: 0; }
+.section-intro { max-width: 650px; color: var(--muted); margin-top: 1.3rem; }
+.text-link { display: inline-flex; align-items: center; gap: .5rem; font-weight: 700; text-decoration: none; border-bottom: 1px solid var(--sun); padding-bottom: .25rem; white-space: nowrap; }
+.text-link span { color: #a56f23; }
+.feature-card { position: relative; display: block; height: 100%; background: var(--cream); color: var(--ink); text-decoration: none; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+.feature-card:hover { color: var(--ink); transform: translateY(-6px); box-shadow: var(--shadow); }
+.feature-card > img { width: 100%; height: 250px; object-fit: cover; transition: transform .5s ease; }
+.feature-card:hover > img { transform: scale(1.04); }
+.feature-card-body { position: relative; padding: 1.5rem 1.45rem 1.7rem; min-height: 210px; }
+.card-kicker { display: block; color: #a56f23; font-size: .68rem; font-weight: 700; letter-spacing: .13em; margin-bottom: .65rem; }
+.feature-card h3, .destination-card h3, .stay-card h3 { font-size: 1.55rem; }
+.feature-card p, .destination-card p, .stay-card p { color: var(--muted); font-size: .95rem; }
+.circle-arrow { position: absolute; right: 1.35rem; bottom: 1.3rem; display: grid; place-items: center; width: 36px; height: 36px; background: var(--sun); border-radius: 50%; }
+.quote-band { background: var(--blue-dark); color: white; padding: 5rem 0; text-align: center; }
+.quote-inner blockquote { font-family: 'Bitter', serif; font-size: clamp(2.4rem, 5vw, 4.3rem); line-height: 1.2; margin: 1rem 0; }
+.quote-inner > p:not(.eyebrow) { color: rgba(255,255,255,.7); margin-bottom: 1.8rem; }
+.travel-accordion { margin-top: 2rem; border-top: 1px solid var(--line); }
+.travel-accordion .accordion-item { background: transparent; border: 0; border-bottom: 1px solid var(--line); }
+.travel-accordion .accordion-button { background: transparent; color: var(--ink); font-weight: 700; padding: 1.35rem .5rem; box-shadow: none; }
+.travel-accordion .accordion-button:not(.collapsed) { color: var(--blue); }
+.travel-accordion .accordion-body { color: var(--muted); padding: 0 .5rem 1.5rem; }
+.page-hero { min-height: 390px; display: flex; align-items: center; color: white; background-size: cover; background-position: center; position: relative; }
+.page-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,35,43,.86), rgba(10,35,43,.32)); }
+.page-hero .container { position: relative; z-index: 1; padding-top: 3rem; padding-bottom: 3rem; }
+.page-hero h1 { font-size: clamp(2.8rem, 6vw, 5.2rem); margin-bottom: 1rem; }
+.page-hero p:last-child { color: rgba(255,255,255,.84); max-width: 540px; font-size: 1.05rem; }
+.destination-hero { background-image: url('stay.jpg'); }
+.stay-hero { background-image: url('hero.jpg'); }
+.gallery-hero { background-image: url('gallery.jpg'); }
+.contact-hero { background-image: url('horse.jpg'); }
+.search-tools { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+.search-tools .form-control { max-width: 340px; padding: .85rem 1rem; }
+.filter-buttons { display: flex; flex-wrap: wrap; gap: .45rem; }
+.filter-btn { border: 1px solid var(--line); color: var(--ink); border-radius: 30px; padding: .55rem .9rem; }
+.filter-btn:hover, .filter-btn.active { background: var(--blue); color: white; border-color: var(--blue); }
+.destination-card { height: 100%; background: var(--cream); overflow: hidden; }
+.destination-card > img { width: 100%; height: 290px; object-fit: cover; }
+.destination-copy { padding: 1.5rem; }
+.destination-copy p { min-height: 4.6rem; }
+.destination-meta { display: flex; justify-content: space-between; align-items: center; gap: .5rem; padding-top: 1rem; border-top: 1px solid #e0e1d9; color: var(--muted); font-size: .8rem; }
+.badge-soft { background: #e8e1ce; color: #5d4a24; font-weight: 600; }
+.tip-box { display: flex; align-items: flex-start; gap: 1rem; background: #f3f0e5; padding: 1.5rem; }
+.tip-icon { flex: 0 0 34px; height: 34px; display: grid; place-items: center; background: var(--sun); border-radius: 50%; font-weight: 700; }
+.tip-box h3 { font-size: 1.2rem; margin-bottom: .35rem; }
+.tip-box p { color: var(--muted); margin: 0; }
+.stay-card { height: 100%; border: 1px solid var(--line); background: var(--paper); transition: transform .25s ease, box-shadow .25s ease; }
+.stay-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.stay-image { position: relative; }
+.stay-image img { width: 100%; height: 245px; object-fit: cover; }
+.stay-label { position: absolute; left: 1rem; bottom: 1rem; background: var(--sun); color: var(--blue-dark); padding: .35rem .65rem; font-size: .65rem; font-weight: 700; letter-spacing: .1em; }
+.stay-body { padding: 1.5rem; }
+.stay-body ul { padding-left: 1.15rem; color: var(--muted); font-size: .9rem; margin: 1rem 0 1.5rem; }
+.stay-body li { margin-bottom: .35rem; }
+.quote-card { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 2.5rem; background: var(--blue-dark); color: white; }
+.quote-card h2 { font-size: 2.2rem; }
+.quote-card p:not(.eyebrow) { color: rgba(255,255,255,.75); margin-bottom: 0; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 240px; gap: 1rem; margin-top: 2rem; }
+.gallery-photo { position: relative; padding: 0; border: 0; background: var(--blue-dark); overflow: hidden; text-align: left; color: white; }
+.gallery-photo.photo-large { grid-row: span 2; }
+.gallery-photo img { width: 100%; height: 100%; object-fit: cover; opacity: .9; transition: transform .4s ease, opacity .4s ease; }
+.gallery-photo::after { content: ''; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(8,28,34,.8)); }
+.gallery-photo span { position: absolute; z-index: 1; left: 1.1rem; right: 1.1rem; bottom: 1rem; display: flex; justify-content: space-between; font-family: 'Bitter', serif; font-size: 1.15rem; }
+.gallery-photo span b { color: var(--sun); font-family: 'Work Sans', sans-serif; }
+.gallery-photo:hover img, .gallery-photo:focus img { transform: scale(1.05); opacity: 1; }
+.gallery-controls { display: flex; justify-content: center; align-items: center; gap: 1.5rem; margin-top: 2rem; }
+.gallery-controls .btn { padding: .55rem .9rem; }
+.gallery-modal .modal-content { background: var(--blue-dark); color: white; border: 0; }
+.gallery-modal .modal-header { border-color: rgba(255,255,255,.15); }
+.gallery-modal .btn-close { filter: invert(1); }
+.gallery-modal .modal-body { text-align: center; }
+.gallery-modal #modalPhoto { max-height: 68vh; width: 100%; object-fit: contain; }
+.modal-controls { display: flex; justify-content: space-between; margin-top: 1rem; }
+.display-heading { font-size: clamp(2.1rem, 4vw, 3.5rem); margin-bottom: 1.25rem; }
+.contact-info { display: flex; gap: 1rem; margin-top: 2rem; }
+.contact-icon { flex: 0 0 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--sun); border-radius: 50%; color: #a56f23; font-weight: 700; font-size: .8rem; }
+.contact-info h3 { font-size: 1.15rem; margin-bottom: .3rem; }
+.contact-info p { color: var(--muted); margin: 0; }
+.form-panel { border: 1px solid var(--line); padding: clamp(1.2rem, 3vw, 2rem); background: var(--paper); box-shadow: 0 12px 35px rgba(18,43,50,.04); }
+.form-panel-heading { padding-bottom: 1.4rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+.form-panel-heading h2 { font-size: 2rem; margin-bottom: .5rem; }
+.form-panel-heading p:last-child { color: var(--muted); margin: 0; }
+.form-label { font-size: .86rem; font-weight: 700; }
+.form-control, .form-select { border-radius: 2px; border-color: #d7dbd7; padding: .75rem .8rem; background-color: var(--paper); color: var(--ink); }
+.form-control:focus, .form-select:focus { border-color: var(--blue); box-shadow: 0 0 0 .2rem rgba(23,75,89,.12); }
+.estimate-box { display: flex; align-items: center; justify-content: space-between; background: var(--cream); padding: 1rem 1.2rem; gap: 1rem; }
+.estimate-box div { display: flex; flex-direction: column; }
+.estimate-box strong { font-family: 'Bitter', serif; font-size: 1.8rem; }
+.estimate-note { font-size: .75rem; color: var(--muted); }
+.form-feedback { font-size: .9rem; font-weight: 600; }
+.form-feedback.success { background: #e4f4e9; color: #1c6138; padding: .8rem; border-left: 4px solid #2f8b51; }
+.form-feedback.error { color: #a32222; }
+.muted-text { color: var(--muted); }
+.site-footer { background: #0d2831; color: white; padding: 3rem 0 1.3rem; }
+.footer-top { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding-bottom: 2rem; }
+.footer-top p { margin: 0; color: rgba(255,255,255,.6); font-size: .9rem; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+.footer-links a { color: rgba(255,255,255,.78); text-decoration: none; font-size: .85rem; }
+.footer-links a:hover { color: var(--sun); }
+.footer-bottom { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.5); font-size: .75rem; }
+
+/* Dark mode is saved in the browser using localStorage. */
+body.dark-mode { --ink: #edf1ee; --muted: #b4c1c1; --cream: #203a42; --paper: #142f38; --line: #35515a; background: var(--paper); color: var(--ink); }
+body.dark-mode .quick-facts, body.dark-mode .feature-card, body.dark-mode .destination-card, body.dark-mode .stay-card, body.dark-mode .form-panel { background: var(--cream); }
+body.dark-mode .quick-facts div { border-color: #45616a; }
+body.dark-mode .destination-meta { border-color: #45616a; }
+body.dark-mode .filter-btn, body.dark-mode .btn-outline-dark { color: var(--ink); border-color: #698087; }
+body.dark-mode .filter-btn.active { background: var(--sun); color: #172d35; }
+body.dark-mode .tip-box { background: #243e45; }
+body.dark-mode .form-control, body.dark-mode .form-select { background-color: #18343d; color: var(--ink); border-color: #45616a; }
+body.dark-mode .estimate-box { background: #203a42; }
+body.dark-mode .text-link { color: #f2c56d; }
+body.dark-mode .accordion-button { color: var(--ink); }
+body.dark-mode .badge-soft { background: #594f36; color: #ffe5a7; }
+
+@media (min-width: 1200px) { .hero-content { padding-left: 2rem; } }
+@media (max-width: 767.98px) {
+  .hero { min-height: 610px; }
+  .hero-stamp { width: 94px; height: 94px; right: 5%; bottom: 5%; }
+  .hero-stamp span { font-size: 1.15rem; }
+  .hero-stamp small { font-size: .55rem; }
+  .quick-facts { padding: 1.3rem .5rem; }
+  .quick-facts div { padding: .2rem .7rem; }
+  .quick-facts strong { font-size: 1rem; }
+  .quick-facts span { font-size: .7rem; }
+  .section-space { padding-top: 4rem; padding-bottom: 4rem; }
+  .section-heading { align-items: flex-start; flex-direction: column; gap: 1rem; }
+  .feature-card-body { min-height: 0; }
+  .page-hero { min-height: 350px; }
+  .search-tools .form-control { max-width: none; width: 100%; }
+  .destination-card > img { height: 230px; }
+  .quote-card { align-items: flex-start; flex-direction: column; padding: 1.5rem; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 190px; gap: .65rem; }
+  .gallery-photo.photo-large { grid-row: span 1; }
+  .gallery-photo span { left: .7rem; right: .7rem; bottom: .7rem; font-size: .95rem; }
+  .gallery-controls { gap: .6rem; }
+  .gallery-controls .btn { font-size: .82rem; }
+  .footer-top { align-items: flex-start; flex-direction: column; }
+  .footer-bottom { flex-direction: column; gap: .3rem; }
+}
+@media (max-width: 420px) {
+  .quick-facts { grid-template-columns: 1fr; gap: .8rem; }
+  .quick-facts div { border-right: 0; border-bottom: 1px solid #dcded6; padding: .5rem; }
+  .quick-facts div:last-child { border-bottom: 0; }
+  .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+}
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header><nav class="navbar navbar-expand-lg navbar-dark site-nav"><div class="container"><a class="navbar-brand" href="index.html"><span class="brand-mark">M</span> MalotiTrails<span class="brand-dot">.</span></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Open navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="mainNav"><ul class="navbar-nav ms-auto align-items-lg-center"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="destinations.html">Destinations</a></li><li class="nav-item"><a class="nav-link" href="accommodation.html">Stay</a></li><li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li><li class="nav-item"><a class="nav-link" href="contact.html">Plan a trip</a></li><li class="nav-item ms-lg-2"><button class="btn btn-sm theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode">☾ Theme</button></li></ul></div></div></nav></header>
+<main id="main">
+  <section class="page-hero destination-hero"><div class="container"><p class="eyebrow">GO A LITTLE FURTHER</p><h1>Places that stay<br><em>with you.</em></h1><p>Find your next stop among Lesotho's unforgettable landscapes.</p></div></section>
+  <section class="section-space container">
+    <div class="section-heading"><div><p class="eyebrow">PICK YOUR KIND OF ADVENTURE</p><h2>Explore the map.</h2></div><span class="badge rounded-pill text-bg-light">4 ideas to start</span></div>
+    <div class="search-tools">
+      <label class="visually-hidden" for="destinationSearch">Search destinations</label><input class="form-control" id="destinationSearch" type="search" placeholder="Search destinations..." aria-describedby="searchHelp">
+      <div class="filter-buttons" role="group" aria-label="Filter destinations"><button class="btn filter-btn active" type="button" data-filter="all">All places</button><button class="btn filter-btn" type="button" data-filter="water">Water & views</button><button class="btn filter-btn" type="button" data-filter="mountain">Mountains</button><button class="btn filter-btn" type="button" data-filter="culture">Culture</button></div>
+    </div>
+    <p id="searchHelp" class="small muted-text">Try searching for “mountain”, “water” or a place name.</p>
+    <div class="row g-4 mt-1" id="destinationGrid">
+      <article class="col-md-6 destination-item" data-category="water mountain" data-search="maletsunyane waterfall semongkong water hiking views">
+        <div class="destination-card" id="maletsunyane"><img src="maletsunyane.jpg" alt="Waterfall dropping into a green rocky valley"><div class="destination-copy"><span class="card-kicker">WATERFALL COUNTRY</span><h3>Maletsunyane Falls</h3><p>Feel the scale of one of Lesotho's famous waterfall landscapes near Semonkong.</p><div class="destination-meta"><span> Semonkong area</span><span class="badge badge-soft">Nature</span></div></div></div>
+      </article>
+      <article class="col-md-6 destination-item" data-category="water mountain" data-search="katse dam reservoir lake mountains water">
+        <div class="destination-card" id="katse"><img src="katse.jpg" alt="A calm mountain lake surrounded by hills"><div class="destination-copy"><span class="card-kicker">WATER & WIDE VIEWS</span><h3>Katse Dam</h3><p>Take in striking highland scenery around the impressive reservoir and surrounding mountains.</p><div class="destination-meta"><span> Central highlands</span><span class="badge badge-soft">Scenic</span></div></div></div>
+      </article>
+      <article class="col-md-6 destination-item" data-category="mountain" data-search="sani pass mountain road adventure highlands">
+        <div class="destination-card"><img src="sani1.jpg" alt="Tall mountain peaks under a bright sky"><div class="destination-copy"><span class="card-kicker">THE HIGH ROAD</span><h3>Sani Pass region</h3><p>Plan carefully for dramatic mountain scenery and a route known for its steep highland setting.</p><div class="destination-meta"><span> Eastern highlands</span><span class="badge badge-soft">Adventure</span></div></div></div>
+      </article>
+      <article class="col-md-6 destination-item" data-category="culture mountain" data-search="thaba bosiu heritage history culture basotho">
+        <div class="destination-card"><img src="thaba.jpg" alt="Mountain landscape beneath a starry evening sky"><div class="destination-copy"><span class="card-kicker">ROOTS & STORIES</span><h3>Thaba Bosiu</h3><p>Explore an important place in Basotho history and learn more about the nation's heritage.</p><div class="destination-meta"><span> Near Maseru</span><span class="badge badge-soft">Heritage</span></div></div></div>
+      </article>
+    </div>
+    <div id="noResults" class="alert alert-warning mt-4 d-none" role="status">No destinations match your search. Try another word or choose “All places”.</div>
+    <aside class="tip-box mt-5"><div class="tip-icon">i</div><div><h3>Travel tip</h3><p>Some mountain roads are challenging and weather can change quickly. Check local conditions and transport options before setting off.</p></div></aside>
+    <div class="text-center mt-5"><a class="btn btn-sun" href="contact.html">Plan your route ↗</a></div>
+  </section>
+</main>
+<footer class="site-footer"><div class="container footer-top"><a class="navbar-brand" href="index.html"><span class="brand-mark">M</span> MalotiTrails<span class="brand-dot">.</span></a><p>Find your own way through Lesotho.</p><div class="footer-links"><a href="destinations.html">Destinations</a><a href="accommodation.html">Stay</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div><div class="container footer-bottom"><span>© 2026 MalotiTrails Lesotho</span><span>Student tourism website project</span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="js_script.js"></script>
+</body></html>
